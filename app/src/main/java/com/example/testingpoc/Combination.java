@@ -1,8 +1,6 @@
 package com.example.testingpoc;
 // Java program to print all combination of size r in an array of size n
 
-import java.io.*;
-
 class Combination {
 
     /* arr[] ---> Input Array
@@ -41,7 +39,7 @@ class Combination {
 
     /*Driver function to check for above function*/
     public static void main(String[] args) {
-        int arr[] = {1, 2, 3, 4, 5};
+        int arr[] = {1, 2, 3, 4, 5, 7, 8, 9, 10, 11};
         int r = 3;
         int n = arr.length;
         printCombination(arr, n, r);
