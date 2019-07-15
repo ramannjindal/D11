@@ -33,6 +33,7 @@ proguard/
 captures/
 
 # IntelliJ
+.idea/
 *.iml
 .idea/workspace.xml
 .idea/tasks.xml
@@ -51,7 +52,7 @@ captures/
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
-
+gradle/
 # Freeline
 freeline.py
 freeline/
