@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:compat="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.notifications.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        compat:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/action_settings" />
+    <item
+        android:id="@+id/action_enable_send_payment_notification"
+        android:orderInCategory="100"
+        compat:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_enable"
+        android:title="@string/action_enable" />
+    <item
+        android:id="@+id/action_disable_send_payment_notification"
+        android:orderInCategory="100"
+        compat:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_disable"
+        android:title="@string/action_disable" />
+</menu>
