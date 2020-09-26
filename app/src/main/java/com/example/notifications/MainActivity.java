@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.list);
         list.setAdapter(adapter);
         LocalBroadcastManager.getInstance(this).registerReceiver(onNotice, new IntentFilter("Msg"));
+        getSupportActionBar().setTitle("Home");
       /*  Intent intent = new Intent(
                 "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
         startActivity(intent);*/
@@ -62,23 +64,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
-
-        Drawable drawableSettings = menu.findItem(R.id.action_settings).getIcon();
-        drawableSettings = DrawableCompat.wrap(drawableSettings);
-        DrawableCompat.setTint(drawableSettings, ContextCompat.getColor(this, R.color.color_setting));
-        menu.findItem(R.id.action_settings).setIcon(drawableSettings);
-
-        Drawable drawableEnable = menu.findItem(R.id.action_enable_send_payment_notification).getIcon();
-        drawableEnable = DrawableCompat.wrap(drawableEnable);
-        DrawableCompat.setTint(drawableEnable, ContextCompat.getColor(this, R.color.color_setting));
-        menu.findItem(R.id.action_enable_send_payment_notification).setIcon(drawableEnable);
-
-        Drawable drawableDisable = menu.findItem(R.id.action_disable_send_payment_notification).getIcon();
-        drawableDisable = DrawableCompat.wrap(drawableDisable);
-        DrawableCompat.setTint(drawableDisable, ContextCompat.getColor(this, R.color.color_setting));
-        menu.findItem(R.id.action_disable_send_payment_notification).setIcon(drawableDisable);
+        changeMenuIconColor(menu, R.id.action_refresh, R.color.color_setting);
+        changeMenuIconColor(menu, R.id.action_settings, R.color.color_setting);
+        changeMenuIconColor(menu, R.id.action_enable_send_payment_notification, R.color.color_setting);
+        changeMenuIconColor(menu, R.id.action_disable_send_payment_notification, R.color.color_setting);
         return true;
+    }
+
+    private void changeMenuIconColor(Menu menu, int menuId, @ColorRes int color) {
+        Drawable drawable = menu.findItem(menuId).getIcon();
+        drawable = DrawableCompat.wrap(drawable);
+        DrawableCompat.setTint(drawable, ContextCompat.getColor(this, color));
+        menu.findItem(menuId).setIcon(drawable);
     }
 
     @Override
@@ -88,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(
                         "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
                 startActivity(intent);
+                return true;
+            }
+            case R.id.action_refresh: {
+               showToast("Refreshing");
                 return true;
             }
             case R.id.action_enable_send_payment_notification: {
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 if(byteArray !=null) {
                     bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
                 }*/
-                SimpleDateFormat sdf=new SimpleDateFormat("EEE dd MMM 'at' hh:mm a", Locale.US);
+                SimpleDateFormat sdf = new SimpleDateFormat(PaymentModel.dateFormat, Locale.US);
                 if (!isPaymentMessage(message, sender))
                     return;
                 PaymentModel model = new PaymentModel();
@@ -146,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
                     list = (ListView) findViewById(R.id.list);
                     list.setAdapter(adapter);
                 }
-                showToast(sender + " " + message + "\n" + (isSendNotificationEnabled() ? "Going " : "Not going ") + "to send to server");
             } catch (Exception e) {
                 e.printStackTrace();
             }

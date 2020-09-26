@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Payment Notification</string>
     <string name="hello_world">Hello world!</string>
+    <string name="action_refresh">Refresh</string>
     <string name="action_settings">Notification Settings</string>
     <string name="action_enable">Enable Sending Messages</string>
     <string name="action_disable">Disable Sending Messages</string>

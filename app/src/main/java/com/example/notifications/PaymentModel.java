@@ -6,7 +6,7 @@ public class PaymentModel {
     String from;
     String message;
     String time;
-
+public static final String dateFormat="EEE dd MMM 'at' hh:mm a";
     public String getFrom() {
         return from;
     }
